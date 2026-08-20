@@ -1,8 +1,0 @@
-{
-  "name": "agritrace",
-  "private": true,
-  "scripts": {
-    "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\""
-  },
-  "devDependencies": { "concurrently": "^9.1.2" }
-}
