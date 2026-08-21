@@ -13,35 +13,35 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 echo 'Building Docker images...'
-                bat 'docker compose build'
+                sh 'docker compose build'
             }
         }
 
         stage('Stop Existing Containers') {
             steps {
-                echo 'Stopping existing application containers...'
-                bat 'docker compose down'
+                echo 'Stopping existing Agritrace containers...'
+                sh 'docker compose down || true'
             }
         }
 
         stage('Start Application') {
             steps {
                 echo 'Starting Agritrace application...'
-                bat 'docker compose up -d'
+                sh 'docker compose up -d'
             }
         }
 
         stage('Check Containers') {
             steps {
                 echo 'Checking running containers...'
-                bat 'docker compose ps'
+                sh 'docker ps'
             }
         }
     }
 
     post {
         success {
-            echo 'Agritrace application deployed successfully!'
+            echo 'Jenkins pipeline completed successfully!'
         }
 
         failure {
