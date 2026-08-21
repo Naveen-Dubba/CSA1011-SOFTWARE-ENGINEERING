@@ -1,67 +1,36 @@
-# Agritrace
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Agritrace is a full-stack agricultural supply-chain traceability and produce-management system. It gives farmers, collection centers, processors, distributors, retailers, administrators, and consumers one shared record for a batch's journey from harvest to shelf.
+## Getting Started
 
-## Features
+First, run the development server:
 
-- JWT login with bcrypt password hashing and role-aware API permissions
-- Produce batch registration, search, status updates, and traceability IDs
-- Quality inspection and shipment records
-- Public product journey lookup
-- Dashboard metrics, activity feed, and Chart.js category analytics
-- MySQL relational schema with foreign keys, indexes, timestamps, and demo admin access
-- Docker Compose deployment with MySQL persistence and Nginx frontend routing
-
-## Stack
-
-React, Vite, React Router, Axios, Chart.js, Node.js, Express, JWT, bcryptjs, MySQL 8, Docker, and Nginx.
-
-## Run With Docker
-
-1. Open the folder in Visual Studio Code: `code .`
-2. Start the complete stack: `docker compose up --build`
-3. Open http://localhost:8080
-4. Sign in with `admin@agritrace.local` and `Admin@123`
-5. Stop the stack with `docker compose down` (add `-v` to remove the MySQL volume and reset data).
-
-The API is available at http://localhost:5000/api/health. The frontend Nginx container proxies browser requests from `/api` to the backend service.
-
-## Run Without Docker
-
-### Database
-
-Create a MySQL 8 database/user, then run `database/init.sql`. Copy `backend/.env.example` to `backend/.env` and set the credentials.
-
-### Backend
-
-```powershell
-cd backend
-npm.cmd install
-npm.cmd run dev
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### Frontend
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```powershell
-cd frontend
-npm.cmd install
-npm.cmd run dev
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-For a non-proxied local frontend, set `VITE_API_URL=http://localhost:5000/api` in `frontend/.env`. Vite runs at http://localhost:5173.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## API Surface
+## Learn More
 
-- `POST /api/auth/register`, `POST /api/auth/login`
-- `GET /api/dashboard`
-- `GET/POST /api/batches`, `PUT /api/batches/:id/status`, `DELETE /api/batches/:id`
-- `GET /api/traceability/:traceId`
-- `GET/POST /api/quality`
-- `GET/POST /api/shipments`, `PUT /api/shipments/:id`
-- `GET /api/notifications`
+To learn more about Next.js, take a look at the following resources:
 
-Protected endpoints expect `Authorization: Bearer <jwt>`. All SQL calls use parameterized queries. Replace `JWT_SECRET`, database passwords, and CORS origins before production deployment.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Structure
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-`frontend/` contains the React application and Nginx image. `backend/` contains the Express API, auth middleware, and database connection. `database/init.sql` contains the relational schema. `docker-compose.yml` starts the frontend, API, and MySQL services on one internal network.
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

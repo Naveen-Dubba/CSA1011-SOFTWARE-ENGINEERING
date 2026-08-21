@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo 'Pulling project from GitHub...'
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Images') {
+            steps {
+                echo 'Building Docker images...'
+                bat 'docker compose build'
+            }
+        }
+
+        stage('Stop Existing Containers') {
+            steps {
+                echo 'Stopping existing application containers...'
+                bat 'docker compose down'
+            }
+        }
+
+        stage('Start Application') {
+            steps {
+                echo 'Starting Agritrace application...'
+                bat 'docker compose up -d'
+            }
+        }
+
+        stage('Check Containers') {
+            steps {
+                echo 'Checking running containers...'
+                bat 'docker compose ps'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Agritrace application deployed successfully!'
+        }
+
+        failure {
+            echo 'Jenkins pipeline failed. Check the console output.'
+        }
+    }
+}
