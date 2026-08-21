@@ -65,3 +65,6 @@ Protected endpoints expect `Authorization: Bearer <jwt>`. All SQL calls use para
 ## Structure
 
 `frontend/` contains the React application and Nginx image. `backend/` contains the Express API, auth middleware, and database connection. `database/init.sql` contains the relational schema. `docker-compose.yml` starts the frontend, API, and MySQL services on one internal network.
+## CI/CD
+
+This project uses Jenkins and Docker for continuous integration and deployment.
